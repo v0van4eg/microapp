@@ -2,9 +2,16 @@ from flask import Flask, request, jsonify, send_from_directory
 import math
 
 app = Flask(__name__)
+# Разрешаем кросс-доменные запросы для всех ресурсов
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/calc', methods=['POST'])
 def calculate():
+    print("Выполняем запрос")
     data = request.get_json()
 
     operation = data.get('operation')
@@ -95,6 +102,11 @@ def power():
 @app.route('/')
 def index():
     return send_from_directory('.', 'calc.html')
+
+@app.route('/health')
+def health_check():
+    return jsonify({'status': 'ok'})
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

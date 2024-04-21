@@ -50,7 +50,8 @@
         number2: number2,
       };
 
-      fetch('/calc', {
+      fetch('http://api:5000/calc', {
+<!--      fetch('/calc', {-->
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,6 +68,7 @@
       })
       .catch(error => {
         alert('Произошла ошибка. Попробуйте еще раз.');
+        alert(data.error);
       });
     });
   </script>

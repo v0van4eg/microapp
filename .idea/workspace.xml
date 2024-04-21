@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9747905-a70d-4c7d-8503-26234fc9702d" name="Changes" comment="First">
-      <change afterPath="$PROJECT_DIR$/Dockerfile-api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile-web" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getdoc.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_nginx.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile-web" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile-web" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calc.html" beforeDir="false" afterPath="$PROJECT_DIR$/calc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +52,7 @@
     "Python.web.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "web"
+    "git-widget-placeholder": "microservices"
   }
 }]]></component>
   <component name="RunManager">
@@ -139,7 +133,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="web" />
+                        <option value="microservices" />
                       </list>
                     </value>
                   </entry>
