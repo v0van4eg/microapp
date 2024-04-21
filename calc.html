@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Калькулятор</title>
+</head>
+<body>
+  <h1>Калькулятор</h1>
+  <form id="form">
+    <label for="operation">Операция:</label>
+    <select id="operation">
+      <option value="sqrt">Квадратный корень</option>
+      <option value="pow">Возведение в степень</option>
+    </select>
+    <br>
+    <label for="number1">Первое число:</label>
+    <input type="number" id="number1">
+    <br>
+    <label for="number2">Второе число (для возведения в степень):</label>
+    <input type="number" id="number2" disabled>
+    <br>
+    <input type="submit" value="Вычислить">
+  </form>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('operation').addEventListener('change', function() {
+      const number2Input = document.getElementById('number2');
+
+      if (this.value === 'pow') {
+        number2Input.removeAttribute('disabled');
+      } else {
+        number2Input.setAttribute('disabled', true);
+      }
+    });
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const operation = document.getElementById('operation').value;
+      const number1 = document.getElementById('number1').value;
+      let number2 = document.getElementById('number2').value;
+
+      if (operation === 'pow' && number2 === '') {
+        number2 = null;
+      }
+
+      const data = {
+        operation: operation,
+        number1: number1,
+        number2: number2,
+      };
+
+      fetch('/calc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          document.getElementById('result').innerHTML = 'Результат: ' + data.result;
+        }
+      })
+      .catch(error => {
+        alert('Произошла ошибка. Попробуйте еще раз.');
+      });
+    });
+  </script>
+</body>
+</html>
