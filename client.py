@@ -1,4 +1,5 @@
 import requests
+import json
 
 def main():
     numbers = input("Введите одно или два числа через пробел: ").split()
@@ -6,15 +7,26 @@ def main():
     if len(numbers) == 1:
         # Если введено одно число, отправляем запрос на вычисление квадратного корня
         number = numbers[0]
-        response = requests.get('http://localhost:5000/sqrt', params={'base': number})
+        response = make_request('http://localhost:5000/sqrt', 'GET', {'base': number})
         process_response(response, number, "квадратного корня")
     elif len(numbers) == 2:
         # Если введены два числа, отправляем запрос на возведение в степень
         base, exponent = numbers
-        response = requests.get('http://localhost:5000/pow', params={'base': base, 'exp': exponent})
+        data = {'base': base, 'exp': exponent}
+        response = make_request('http://localhost:5000/pow', 'POST', data)
         process_response(response, f"{base} в степени {exponent}", "степени")
     else:
         print("Пожалуйста, введите одно или два числа.")
+
+def make_request(url, method, data):
+    if method == 'GET':
+        response = requests.get(url, params=data)
+    elif method == 'POST':
+        response = requests.post(url, json=data)
+    else:
+        raise ValueError('Unsupported method')
+
+    return response
 
 def process_response(response, input_data, operation):
     # Проверяем успешность запроса
@@ -26,7 +38,7 @@ def process_response(response, input_data, operation):
         else:
             print("Ошибка: Не удалось получить результат")
     else:
-        print(f"Ошибка при обращении к API mainapp для операции {operation} {input_data}")
+        print(f"Ошибка при обращении к API для операции {operation} {input_data}: {response.text}")
 
-if __name__ == "__main__":
+if __name__ == "main":
     main()
